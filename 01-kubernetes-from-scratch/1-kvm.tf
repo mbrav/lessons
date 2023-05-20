@@ -8,12 +8,6 @@ provider "libvirt" {
   uri   = "qemu:///system"
 }
 
-provider "libvirt" {
-  ## Configuration options
-  #alias = "server"
-  #uri   = "qemu+ssh://root@192.168.100.10/system"
-}
-
 # Define custom libvirt pool when necessary
 # resource "libvirt_pool" "vmdisk-pool" {
 #   name = "vmdisk-pool"

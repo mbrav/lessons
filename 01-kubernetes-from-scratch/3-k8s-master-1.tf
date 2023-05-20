@@ -13,7 +13,7 @@ resource "libvirt_volume" "k8s_master_1_disk" {
 resource "libvirt_domain" "k8s_master_1" {
   name   = "k8s_master_1"
   memory = "3072"
-  vcpu   = 4
+  vcpu   = 2
 
   # Mount cloud-init image
   cloudinit = libvirt_cloudinit_disk.debian_cloud_m1.id
