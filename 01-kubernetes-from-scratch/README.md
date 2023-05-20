@@ -5,7 +5,7 @@ In this tutorial we will demystify the process of bootstrapping a Kubernetes clu
 ## Articles
 
 - **dev.to** [*Kubernetes from Scratch: Bootstrapping a Cluster*](https://dev.to/mbrav/kubernetes-from-scratch-bootstrapping-a-cluster-1bd5) - 🌐 English
-- **dev.to** [*Поднимаем Kubernetes с нуля*](https://habr.com/ru/articles/734928/) - 🌐 Russian
+- **habr.com** [*Поднимаем Kubernetes с нуля*](https://habr.com/ru/articles/734928/) - 🌐 Russian
 
 ## Terraform Diagram
 
