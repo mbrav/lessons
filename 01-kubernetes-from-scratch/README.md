@@ -74,3 +74,5 @@ flowchart
    ```bash
    terraform apply
    ```
+
+3. Follow the kubernetes bootstrapping procedure described in [my articles](#articles)
