@@ -7,5 +7,5 @@
 Source code for all my lessons and tutorials
 
 1. [*Kubernetes From Scratch*](01-kubernetes-from-scratch)
-2. [*Kubernetes From Scratch: Part 2*](02-kubernetes-from-scratch-part2)
+2. [*Kubernetes from Scratch: Stacked High Availability*](02-kubernetes-high-availability-stacked)
 
