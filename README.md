@@ -7,3 +7,5 @@
 Source code for all my lessons and tutorials
 
 1. [*Kubernetes From Scratch*](01-kubernetes-from-scratch)
+2. [*Kubernetes From Scratch: Part 2*](02-kubernetes-from-scratch-part2)
+
