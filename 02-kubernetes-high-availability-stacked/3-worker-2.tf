@@ -47,6 +47,7 @@ resource "libvirt_domain" "kubernetes_worker_2" {
   network_interface {
     network_name   = "k8s_net"
     wait_for_lease = true
+    addresses      = ["10.10.10.32"]
   }
 
   disk {

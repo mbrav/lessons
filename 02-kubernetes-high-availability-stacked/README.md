@@ -47,6 +47,9 @@ flowchart
 ``` 
 -->
 
+## Screenshot
+
+![](screenshot.webp)
 
 ## Installation
 
@@ -55,9 +58,9 @@ flowchart
    terraform init
    ```
 
-2. Apply Terraform
+2. Apply Terraform (with no parallelism to avoid potential `429` Errors)
    ```bash
-   terraform apply
+   terraform apply -parallelism=1
    ```
 
 3. Follow the kubernetes bootstrapping procedure described in [my articles](#articles)

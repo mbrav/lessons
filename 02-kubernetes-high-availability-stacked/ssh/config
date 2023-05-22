@@ -1,0 +1,40 @@
+
+Host kubernetes-master-1
+  HostName 10.10.10.11
+  IdentityFile ~/.ssh/id_mbrav_lessons
+  User node
+
+Host kubernetes-master-2
+  HostName 10.10.10.12
+  IdentityFile ~/.ssh/id_mbrav_lessons
+  User node
+
+Host kubernetes-master-3
+  HostName 10.10.10.13
+  IdentityFile ~/.ssh/id_mbrav_lessons
+  User node
+
+Host kubernetes-worker-1
+  HostName 10.10.10.31
+  IdentityFile ~/.ssh/id_mbrav_lessons
+  User node
+
+Host kubernetes-worker-2
+  HostName 10.10.10.32
+  IdentityFile ~/.ssh/id_mbrav_lessons
+  User node
+
+Host kubernetes-worker-3
+  HostName 10.10.10.33
+  IdentityFile ~/.ssh/id_mbrav_lessons
+  User node
+
+Host kubernetes-worker-4
+  HostName 10.10.10.34
+  IdentityFile ~/.ssh/id_mbrav_lessons
+  User node
+
+Host kubernetes-worker-5
+  HostName 10.10.10.35
+  IdentityFile ~/.ssh/id_mbrav_lessons
+  User node

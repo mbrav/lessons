@@ -6,14 +6,18 @@ resource "libvirt_network" "k8s_net" {
   # mode can be: "nat" (default), "none", "route", "open", "bridge"
   mode = "nat"
 
-  #  the domain used by the DNS server in this network
+  # the domain used by the DNS server in this network
   domain = "k8s.local"
 
   #  list of subnets the addresses allowed for domains connected
-  # also derived to define the host addresses
-  # also derived to define the addresses served by the DHCP server
-  addresses = ["10.10.10.0/24", "2001:db8:ca2:2::1/64"]
+  # ipv4: 10.10.10.0 - 10.10.10.254
+  # ipv6: 2001:db8:1001:0:0:0:0:0 - 2001:db8:1001:0:ffff:ffff:ffff:ffff
+  addresses = ["10.10.10.0/24", "2001:db8:1001::0/64"]
 
+  # dhcp settings
+  dhcp {
+    enabled = true
+  }
 
   # (Optional) DNS configuration
   dns {
@@ -27,7 +31,7 @@ resource "libvirt_network" "k8s_net" {
     # false: Unresolved requests will be forwarded to the host's
     # upstream DNS server if the virtual network's DNS server does not
     # have an answer.
-    local_only = false
+    local_only = true
 
     # (Optional) one or more DNS forwarder entries.  One or both of
     # "address" and "domain" must be specified.  The format is:
