@@ -1,18 +1,19 @@
 # Define Network
 
-resource "libvirt_network" "k8s_net" {
+resource "libvirt_network" "kvm_net" {
   # the name used by libvirt
-  name = "k8s_net"
+  name = var.network_name
   # mode can be: "nat" (default), "none", "route", "open", "bridge"
   mode = "nat"
 
   # the domain used by the DNS server in this network
-  domain = "k8s.local"
+  domain = var.network_dns_domain
 
   #  list of subnets the addresses allowed for domains connected
-  # ipv4: 10.10.10.0 - 10.10.10.254
-  # ipv6: 2001:db8:1001:0:0:0:0:0 - 2001:db8:1001:0:ffff:ffff:ffff:ffff
-  addresses = ["10.10.10.0/24", "2001:db8:1001::0/64"]
+  addresses = [var.network_ipv4_cidr, var.network_ipv6_cidr]
+
+  # Auto start network
+  autostart = true
 
   # dhcp settings
   dhcp {

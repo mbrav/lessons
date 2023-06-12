@@ -1,14 +1,14 @@
 # Define KVM resources to create
 
-# Worker 3
-resource "libvirt_cloudinit_disk" "debian_cloud_worker_4" {
-  name = "debian_cloud_worker_4.iso"
+# VM
+resource "libvirt_cloudinit_disk" "debian_cloud_image" {
+  name = "debian_cloud_image.iso"
 
   # Load cloud_init script and pass variables 
   user_data = templatefile(
     "${path.module}/init/cloud_init_k8s.cfg",
     {
-      hostname          = "worker4",
+      hostname          = var.hostname,
       user              = "node",
       arch              = "amd64",
       crio_os           = "Debian_11",
@@ -17,8 +17,8 @@ resource "libvirt_cloudinit_disk" "debian_cloud_worker_4" {
       crictl_v          = "v1.27.0",
       crio_v            = "1.24",
       download_dir      = "/usr/local/bin",
-      dotfiles_v        = "0.2.1",
-      starship_theme    = "nord-tan"
+      dotfiles_v        = "0.2.2",
+      starship_theme    = "nord-green"
     }
   )
 
@@ -27,31 +27,31 @@ resource "libvirt_cloudinit_disk" "debian_cloud_worker_4" {
   pool           = "default"
 }
 
-resource "libvirt_volume" "kubernetes_worker_4_disk" {
+resource "libvirt_volume" "vm_volume" {
   provider       = libvirt.system
-  name           = "kubernetes_worker_4"
+  name           = "volume_${var.hostname}"
   pool           = "default"
-  base_volume_id = libvirt_volume.debian11_image.id
+  base_volume_id = libvirt_volume.debian12_image.id
   format         = "qcow2"
   size           = 17179869184 # 16GB
 }
 
-resource "libvirt_domain" "kubernetes_worker_4" {
-  name   = "kubernetes_worker_4"
-  memory = "3072"
-  vcpu   = 4
+resource "libvirt_domain" "vm" {
+  name   = "vm_${var.hostname}"
+  memory = var.memory
+  vcpu   = var.vcpu
 
   # Mount cloud-init image
-  cloudinit = libvirt_cloudinit_disk.debian_cloud_worker_4.id
+  cloudinit = libvirt_cloudinit_disk.debian_cloud_image.id
 
   network_interface {
-    network_name   = "k8s_net"
+    network_name   = libvirt_network.kvm_net.id
     wait_for_lease = true
-    addresses      = ["10.10.10.34"]
+    addresses      = var.addresses
   }
 
   disk {
-    volume_id = libvirt_volume.kubernetes_worker_4_disk.id
+    volume_id = libvirt_volume.vm_volume.id
   }
 
   # Serial TTY

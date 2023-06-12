@@ -1,4 +1,4 @@
-# Dependency defintions
+# Provider defintions
 
 terraform {
   required_providers {
@@ -7,4 +7,10 @@ terraform {
       version = "0.7.1"
     }
   }
+}
+
+provider "libvirt" {
+  ## Configuration options
+  alias = "system"
+  uri   = "qemu:///system"
 }
