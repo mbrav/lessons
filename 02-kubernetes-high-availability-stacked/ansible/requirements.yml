@@ -1,0 +1,7 @@
+# Ansible collections
+
+collections:
+  # https://github.com/kubernetes-sigs/kubespray/blob/master/docs/ansible_collection.md
+  - name: https://github.com/kubernetes-sigs/kubespray
+    type: git
+    version: v2.23.0
