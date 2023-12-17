@@ -88,7 +88,7 @@ variable "vm_ssh_key" {
 
 variable "vm_dotfiles_v" {
   type        = string
-  default     = "0.3.2"
+  default     = "0.3.3"
   description = "Define dotfiles version: https://github.com/mbrav/dotfiles"
 }
 
