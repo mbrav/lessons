@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-k8s
+  labels:
+    app: go-k8s
+    tier: frontend
+spec:
+  type: LoadBalancer
+  selector:
+    app: go-k8s
+  ports:
+    - name: go-k8s
+      protocol: TCP
+      port: 80
+      targetPort: 3000

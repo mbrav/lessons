@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-k8s
+  labels:
+    app: go-k8s
+    tier: frontend
+spec:
+  # HPA Replica managed
+  # replicas: 4
+  selector:
+    matchLabels:
+      app: go-k8s
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: go-k8s
+    spec:
+      containers:
+        - name: go-k8s
+          image: mbrav/go-k8s:latest
+          imagePullPolicy: IfNotPresent
+          command:
+            - client
+          # ports:
+          #   - containerPort: 3000
+          # livenessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: 3000
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 5
+          #   successThreshold: 1
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi

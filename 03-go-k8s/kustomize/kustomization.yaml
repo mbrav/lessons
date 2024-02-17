@@ -1,0 +1,33 @@
+kind: Kustomization
+
+# Overide namespace
+namespace: go
+
+# Add common labels
+commonLabels:
+  app-cycle: testing
+  app-version: 0.0.1
+
+commonAnnotations:
+  app-support: "https://www.go-k8s.com/"
+
+# Configure generation options
+generatorOptions:
+  disableNameSuffixHash: false
+  labels:
+    type: generated
+
+# Patches Images
+images:
+  - name: mbrav/go-k8s
+    newTag: "latest"
+
+# Specify YAML resources
+resources:
+  - ./0-ns.yaml
+  - ./1-deploy.yaml
+  - ./2-hpa.yaml
+  - ./3-service.yaml
+  - ./4-ingress.yaml
+  - ./5-role.yaml
+  - ./6-role-binding.yaml
