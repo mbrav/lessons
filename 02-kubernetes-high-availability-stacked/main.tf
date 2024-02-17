@@ -3,7 +3,7 @@ terraform {
   required_providers {
     libvirt = {
       source  = "dmacvicar/libvirt"
-      version = "0.7.1"
+      version = "0.7.6"
     }
   }
 }
@@ -59,7 +59,7 @@ module "masters" {
 }
 
 module "workers" {
-  # Define number of masters 
+  # Define number of masters
   instances       = 3
   source          = "../libvirt-module"
   libvirt_pool    = var.libvirt_pool
