@@ -1,0 +1,30 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Overide namespace
+namespace: postgres
+
+# Add common labels
+commonAnnotations:
+  app-support: https://cloudnative-pg.io
+
+labels:
+  - includeSelectors: true
+    pairs:
+      app-cycle: testing
+
+# Configure generation options
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    type: generated
+
+secretGenerator:
+  - envs:
+      - ./files/env.init-auth
+    name: init-auth
+
+# Specify YAML resources
+resources:
+  - ./1-pg-cluser.yaml
+  - ./2-cert-manager.yaml

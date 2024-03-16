@@ -1,0 +1,35 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pg-cluster
+spec:
+  instances: 3
+  bootstrap:
+    initdb:
+      database: app
+      owner: app
+      secret:
+        name: init-auth
+      postInitSQL:
+        - create table numbers (i integer)
+        - insert into numbers (select generate_series(1,10000))
+      postInitTemplateSQL:
+        - create extension intarray
+      postInitApplicationSQL:
+        - create table application_numbers (i integer)
+        - insert into application_numbers (select generate_series(1,10000))
+  postgresql:
+    parameters:
+      shared_buffers: 256MB
+      pg_stat_statements.max: "10000"
+      pg_stat_statements.track: all
+      auto_explain.log_min_duration: "10s"
+  certificates:
+    serverTLSSecret: pg-cluster-server-cert
+    serverCASecret: pg-cluster-server-cert
+    clientCASecret: pg-cluster-client-cert
+    replicationTLSSecret: pg-cluster-client-cert
+  monitoring:
+    enablePodMonitor: true
+  storage:
+    size: 1Gi

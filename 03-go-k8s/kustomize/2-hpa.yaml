@@ -11,7 +11,7 @@ spec:
     kind: Deployment
     name: go-k8s
   minReplicas: 1
-  maxReplicas: 4
+  maxReplicas: 1
   metrics:
     - type: Resource
       resource:

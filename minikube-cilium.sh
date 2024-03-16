@@ -1,18 +1,26 @@
 #!/usr/bin/env bash
 
-echo "This script starts a new k8s cluster with Cilium as CNI"
-
-profile=cilium-cli
-nodes=1
-memory=4096
-cores=4
-apiserver_ips="192.168.1.2" # Replace this with your host ip
+profile=${profile:-cilium}
+version=${version:-latest}
+nodes=${nodes:-1}
+memory=${memory:-4096}
+cores=${cores:-4}
+apiserver_ips=${apiserver_ips:-192.168.1.2} # Replace this with your host ip
 minikube_addons=(
 	"ingress"
 	"metrics-server"
 )
 
 set -e
+
+echo "This script starts a new k8s cluster with Cilium as CNI"
+echo "Current settings (can be set with exporting variables)"
+echo "  profile:       ${profile}"
+echo "  version:       ${version}"
+echo "  nodes:         ${nodes}"
+echo "  memory:        ${memory}MB"
+echo "  cores:         ${cores}"
+echo "  apiserver_ips: ${apiserver_ips}"
 
 # Fetching latest version of cilium
 function fetch_version_cilium {
@@ -58,13 +66,14 @@ fi
 
 # Start cluser with no CNI
 minikube start \
-	-n $nodes \
+	--profile $profile \
+	--kubernetes-version $version \
+	--nodes $nodes \
 	--memory $memory \
 	--cpus $cores \
 	--cni=false \
 	--embed-certs \
-	--apiserver-ips=$apiserver_ips \
-	--profile $profile
+	--apiserver-ips=$apiserver_ips
 
 if ! command -v cilium >/dev/null; then
 	echo "Installing Cilium CLI"

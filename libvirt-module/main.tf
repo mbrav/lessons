@@ -6,7 +6,8 @@ terraform {
     # For documentation, refer to Terraform libvirt provider
     # https://github.com/dmacvicar/terraform-provider-libvirt
     libvirt = {
-      source = "dmacvicar/libvirt"
+      version = ">= 0.7.1"
+      source  = "dmacvicar/libvirt"
     }
   }
 }
@@ -99,15 +100,15 @@ resource "libvirt_domain" "vm" {
 
   # Wait for ssh port to be ready with 120s timeout
   # provisioner "local-exec" {
-    # interpreter = ["/bin/bash", "-c"]
+  # interpreter = ["/bin/bash", "-c"]
 
-    # command = <<-EOF
-    # set -Ee -o pipefail
-    # ipv4_address="${var.vm_ipv4[count.index]}"
-    # vm_name="${self.name}"
-    # echo "SSH port 22 check for $vm_name (IP $ipv4_address)"
-    # nc -z -v -w 120 "$ipv4_address" 22
-    # EOF
+  # command = <<-EOF
+  # set -Ee -o pipefail
+  # ipv4_address="${var.vm_ipv4[count.index]}"
+  # vm_name="${self.name}"
+  # echo "SSH port 22 check for $vm_name (IP $ipv4_address)"
+  # nc -z -v -w 120 "$ipv4_address" 22
+  # EOF
   # }
 }
 
