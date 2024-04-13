@@ -1,4 +1,4 @@
-# CloudNativePoG
+# CloudNativePG
 
 This is a simple example that installs Cloud Native Postgres operator in a minikube cluster
 

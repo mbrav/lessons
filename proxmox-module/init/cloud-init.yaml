@@ -58,7 +58,7 @@ packages:
 runcmd:
   # SETTINGS
   # Disable swap
-  - swapoff -a
+  # - swapoff -a
   # Enable ssh
   - systemctl enable ssh
   - systemctl start ssh
@@ -83,47 +83,3 @@ growpart:
 
 # Written to /var/log/cloud-init-output.log
 final_message: "The system is finally up, after $UPTIME seconds"
-
-
-# Configure custom apt mirrors for Debian
-# apt:
-  # primary:
-    # - arches: [default]
-    # - uri: http://ftp.am.debian.org/debian/
-    # - uri: http://ftp.au.debian.org/debian/
-    # - uri: http://ftp.at.debian.org/debian/
-    # - uri: http://ftp.by.debian.org/debian/
-    # - uri: http://ftp.be.debian.org/debian/
-    # - uri: http://ftp.br.debian.org/debian/
-    # - uri: http://ftp.bg.debian.org/debian/
-    # - uri: http://ftp.cl.debian.org/debian/
-    # - uri: http://ftp.cn.debian.org/debian/
-    # - uri: http://ftp.hr.debian.org/debian/
-    # - uri: http://ftp.cz.debian.org/debian/
-    # - uri: http://ftp.dk.debian.org/debian/
-    # - uri: http://ftp.fi.debian.org/debian/
-    # - uri: http://ftp.fr.debian.org/debian/
-    # - uri: http://ftp.de.debian.org/debian/
-    # - uri: http://ftp.hk.debian.org/debian/
-    # - uri: http://ftp.is.debian.org/debian/
-    # - uri: http://ftp.it.debian.org/debian/
-    # - uri: http://ftp.kr.debian.org/debian/
-    # - uri: http://ftp.lt.debian.org/debian/
-    # - uri: http://ftp.md.debian.org/debian/
-    # - uri: http://ftp.nl.debian.org/debian/
-    # - uri: http://ftp.nz.debian.org/debian/
-    # - uri: http://ftp.no.debian.org/debian/
-    # - uri: http://ftp.pl.debian.org/debian/
-    # - uri: http://ftp.pt.debian.org/debian/
-    # - uri: http://ftp.ru.debian.org/debian/
-    # - uri: http://mirror.cov.ukservers.com/debian/
-    # - uri: http://ftp.sk.debian.org/debian/
-    # - uri: http://ftp.si.debian.org/debian/
-    # - uri: http://ftp.es.debian.org/debian/
-    # - uri: http://ftp.se.debian.org/debian/
-    # - uri: http://ftp.ch.debian.org/debian/
-    # - uri: http://ftp.tw.debian.org/debian/
-    # - uri: http://ftp.tr.debian.org/debian/
-    # - uri: http://ftp.uk.debian.org/debian/
-    # - uri: http://ftp.us.debian.org/debian/
-
