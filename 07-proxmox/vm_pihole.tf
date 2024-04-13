@@ -10,12 +10,15 @@ module "pihole" {
   vm_tags        = ["terraform", "network"]
 
   vm_id               = 110
+  vm_cpu_cores        = 1
   vm_disk_size        = 6
   vm_memory_dedicated = 1024
   vm_nic              = "vmbr0"
 
-  vm_on_boot = true
+  # read 'Qemu guest agent' section, change to true only when ready
+  vm_agent_enable = true
 
+  vm_on_boot = true
   # vm_startup = {
   #   order = "3"
   # }

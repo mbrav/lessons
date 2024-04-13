@@ -49,7 +49,7 @@ packages:
   - net-tools
   # Linux rice
   # - screenfetch
-  - fish
+  # - fish
   - jq
   - bat
   - fd-find
@@ -63,6 +63,10 @@ runcmd:
   - systemctl enable ssh
   - systemctl start ssh
   # LINUX RICE
+  # Install latest fish version
+  - apt-add-repository ppa:fish-shell/release-3 -y
+  - apt update
+  - apt install fish -y
   # Dotfiles
   - git clone --depth 1 -b ${dotfiles_v} --recurse-submodules https://github.com/mbrav/dotfiles /home/${user}/.dotfiles
   - mkdir -p /home/${user}/.config

@@ -10,12 +10,15 @@ module "k8s_masters" {
   vm_tags        = ["terraform", "k8s", "test"]
 
   vm_id               = 501
+  vm_cpu_cores        = 2
   vm_disk_size        = 12
   vm_memory_dedicated = 4096
   vm_nic              = "vmbr0"
 
-  vm_on_boot = true
+  # read 'Qemu guest agent' section, change to true only when ready
+  vm_agent_enable = true
 
+  vm_on_boot = true
   # vm_startup = {
   #   order = "3"
   # }
@@ -35,11 +38,18 @@ module "k8s_workers" {
   vm_tags        = ["terraform", "k8s", "test"]
 
   vm_id               = 511
+  vm_cpu_cores        = 4
   vm_disk_size        = 24
   vm_memory_dedicated = 8192
   vm_nic              = "vmbr0"
 
+  # read 'Qemu guest agent' section, change to true only when ready
+  vm_agent_enable = true
+
   vm_on_boot = true
+  # vm_startup = {
+  #   order = "3"
+  # }
 
   # vm_startup = {
   #   order = "3"

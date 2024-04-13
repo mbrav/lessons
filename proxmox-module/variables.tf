@@ -61,6 +61,12 @@ variable "vm_id" {
   description = "Define VM Id number"
 }
 
+variable "vm_cpu_cores" {
+  type        = number
+  default     = 1
+  description = "Define number of vCPU cores"
+}
+
 variable "vm_disk_size" {
   type        = number
   default     = 8
@@ -83,6 +89,12 @@ variable "vm_on_boot" {
   type        = bool
   default     = false
   description = "Define VM on boot startup option"
+}
+
+variable "vm_agent_enable" {
+  type        = bool
+  default     = false
+  description = "Enable kvm agent monitoring"
 }
 
 variable "vm_startup" {
@@ -122,7 +134,7 @@ variable "vm_ssh_key" {
 
 variable "vm_dotfiles_v" {
   type        = string
-  default     = "0.3.7"
+  default     = "0.3.8"
   description = "Define dotfiles version: https://github.com/mbrav/dotfiles"
 }
 

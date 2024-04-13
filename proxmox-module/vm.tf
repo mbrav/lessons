@@ -27,7 +27,8 @@ resource "proxmox_virtual_environment_vm" "vm" {
 
   cpu {
     # Proxmox VE recomended
-    type = "x86-64-v2-AES"
+    type  = "x86-64-v2-AES"
+    cores = var.vm_cpu_cores
   }
 
   network_device {
@@ -45,7 +46,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
 
   agent {
     # read 'Qemu guest agent' section, change to true only when ready
-    enabled = false
+    enabled = var.vm_agent_enable
   }
 
   tpm_state {
