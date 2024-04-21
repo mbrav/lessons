@@ -18,3 +18,10 @@ variable "vm_ssh_key" {
   type        = string
   description = "Define public SSH key for VM"
 }
+
+variable "vm_agent_enable" {
+  type        = bool
+  default     = false
+  description = "Enable kvm agent monitoring when ready"
+}
+
