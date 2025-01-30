@@ -1,12 +1,11 @@
 // Provider defenitions
 
 terraform {
-  required_version = ">= 1.4.0"
+  required_version = "~> 1.9"
   required_providers {
     proxmox = {
       source  = "bpg/proxmox"
-      version = ">= 0.53.1"
+      version = "~> 0.70"
     }
   }
 }
-

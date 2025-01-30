@@ -1,16 +1,4 @@
-# Dependency defintions
 
-terraform {
-  required_version = ">= 0.13.4"
-  required_providers {
-    # For documentation, refer to Terraform libvirt provider
-    # https://github.com/dmacvicar/terraform-provider-libvirt
-    libvirt = {
-      version = ">= 0.7.1"
-      source  = "dmacvicar/libvirt"
-    }
-  }
-}
 
 # Define KVM settings
 

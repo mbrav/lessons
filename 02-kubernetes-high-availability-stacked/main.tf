@@ -3,11 +3,11 @@ terraform {
   required_providers {
     libvirt = {
       source  = "dmacvicar/libvirt"
-      version = "0.7.6"
+      version = "~> 0.8"
     }
     local = {
       source  = "hashicorp/local"
-      version = "2.5.1"
+      version = "~> 2.5"
     }
   }
 }
@@ -49,7 +49,7 @@ resource "libvirt_network" "k_net" {
 module "masters" {
   # Define number of masters 
   instances       = 3
-  source          = "../libvirt-module"
+  source          = "../modules/libvirt"
   libvirt_pool    = var.libvirt_pool
   libvirt_network = libvirt_network.k_net.name
 
@@ -65,7 +65,7 @@ module "masters" {
 module "workers" {
   # Define number of masters
   instances       = 3
-  source          = "../libvirt-module"
+  source          = "../modules/libvirt"
   libvirt_pool    = var.libvirt_pool
   libvirt_network = libvirt_network.k_net.name
 
