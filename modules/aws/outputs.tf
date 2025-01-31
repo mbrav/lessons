@@ -28,14 +28,24 @@ output "private_rt_id" {
   value       = aws_route_table.private_rt.id
 }
 
-output "public_security_group_id" {
-  description = "The ID of the public security group"
-  value       = aws_security_group.public_sg.id
+output "public_egress_sg_id" {
+  value       = aws_security_group.public_egress.id
+  description = "The ID of the public egress security group"
 }
 
-output "private_security_group_id" {
-  description = "The ID of the private security group"
-  value       = aws_security_group.private_sg.id
+output "public_ssh_sg_id" {
+  value       = aws_security_group.public_ssh.id
+  description = "The ID of the public SSH security group"
+}
+
+output "public_web_sg_id" {
+  value       = aws_security_group.public_web.id
+  description = "The ID of the public web security group"
+}
+
+output "private_ssh_sg_id" {
+  value       = aws_security_group.private_ssh.id
+  description = "The ID of the private SSH security group"
 }
 
 output "ssh_main_key" {
