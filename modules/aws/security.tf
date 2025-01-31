@@ -1,6 +1,9 @@
-# Security Group for Public Instance
+
+# SECURITY GROUPS
+
+# Public subnet security group
 resource "aws_security_group" "public_sg" {
-  name   = "mbrav-public-sg"
+  name   = "${var.setup_prefix}-public-sg"
   vpc_id = aws_vpc.main.id
 
   ingress {
@@ -18,13 +21,15 @@ resource "aws_security_group" "public_sg" {
   }
 
   tags = {
-    Name = "mbrav-public-sg"
+    Name   = "${var.setup_prefix}-public-sg"
+    Type   = "Security"
+    Domain = "Private"
   }
 }
 
-# Security Group for Private Instance (no public access)
+# Private subnet security group
 resource "aws_security_group" "private_sg" {
-  name   = "mbrav-private-sg"
+  name   = "${var.setup_prefix}-private-sg"
   vpc_id = aws_vpc.main.id
 
   ingress {
@@ -32,9 +37,7 @@ resource "aws_security_group" "private_sg" {
     to_port   = 22
     protocol  = "tcp"
     cidr_blocks = [
-      aws_subnet.mbrav_pub_a.cidr_block,
-      aws_subnet.mbrav_pub_b.cidr_block,
-      aws_subnet.mbrav_pub_c.cidr_block
+      for pub_subnet in aws_subnet.public_subnets : pub_subnet.cidr_block
     ]
   }
 
@@ -46,6 +49,8 @@ resource "aws_security_group" "private_sg" {
   }
 
   tags = {
-    Name = "mbrav-private-sg"
+    Name   = "${var.setup_prefix}-private-sg"
+    Type   = "Security"
+    Domain = "Public"
   }
 }
